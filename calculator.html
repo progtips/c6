@@ -165,7 +165,18 @@
                 shouldResetDisplay = false;
             }
             
-            if (!currentInput.includes('.')) {
+            // Находим последнее число в выражении (после последнего оператора)
+            const operators = ['+', '-', '*', '/'];
+            let lastNumberStart = 0;
+            for (let i = currentInput.length - 1; i >= 0; i--) {
+                if (operators.includes(currentInput[i])) {
+                    lastNumberStart = i + 1;
+                    break;
+                }
+            }
+            
+            const lastNumber = currentInput.substring(lastNumberStart);
+            if (!lastNumber.includes('.')) {
                 currentInput += '.';
                 updateDisplay();
             }
@@ -258,6 +269,7 @@
             } else if (key === 'Escape' || key === 'c' || key === 'C') {
                 clearDisplay();
             } else if (key === 'Backspace') {
+                event.preventDefault();
                 deleteLast();
             }
         });

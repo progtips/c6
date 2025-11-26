@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Калькулятор - E2E тесты', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/calculator.html');
+    await page.goto('/index.html');
   });
 
   test.describe('Ввод чисел', () => {
